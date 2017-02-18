@@ -25,6 +25,7 @@
     "morgan": "^1.6.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
+    "react-link-state": "^0.1.2",
     "react-router": "^1.0.0",
     "request": "^2.65.0",
     "serve-favicon": "^2.3.0",
