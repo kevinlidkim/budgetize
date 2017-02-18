@@ -7,7 +7,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '',
+      username: '',
       password: ''
     }
     this.onChange = this.onChange.bind(this);
@@ -36,7 +36,7 @@ class Login extends React.Component {
       <div className="form-container">
         <form className="form">
           <div className="form-group">
-            <input type="text" valueLink={linkState(this, 'user')}placeholder="Username" />
+            <input type="text" valueLink={linkState(this, 'username')}placeholder="Username" />
             <input type="password" valueLink={linkState(this, 'password')} placeholder="Password" />
           </div>
           <button type="submit" onClick={this.login.bind(this)}>Login</button>

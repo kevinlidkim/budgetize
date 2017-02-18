@@ -8,6 +8,7 @@ class LoginStore {
   }
 
   loginSuccess(data) {
+    console.log(data);
     this.user = data.user;
   }
 
