@@ -22,7 +22,7 @@ class ProfileStore {
   }
 
   purchaseSuccess(data) {
-    console.log(data.data);
+    // console.log(data.data);
     this.budget = this.budget - data.data.paymentAmount;
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ProfileActions from '../actions/ProfileActions';
+import ProfileStore from '../stores/ProfileStore';
 
 class SaleItem extends React.Component {
   constructor(props) {
@@ -9,9 +10,19 @@ class SaleItem extends React.Component {
     }
   }
 
+
+
   buyItem(event) {
     event.preventDefault();
-    ProfileActions.buyItem(this.props.item_name, this.props.price, this.props.payment_token, this.props.access_token);
+
+    var budget = parseInt(ProfileStore.state.budget)
+    var price = Number(this.props.price.replace(/[^0-9\.]+/g,""));
+
+    if (budget > price) {
+      ProfileActions.buyItem(this.props.item_name, this.props.price, this.props.payment_token, this.props.access_token);
+    } else {
+      console.log("YOU DONT HAVE ENOUGH MONEY");
+    }
   }
 
   render() {

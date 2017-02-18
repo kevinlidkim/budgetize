@@ -38,8 +38,7 @@ class Home extends React.Component {
   }
 
   onChange(state) {
-    // this.setState({budget: ProfileStore.budget - PurchaseStore.payment});
-    // this.setState({access_token: LoginStore.state.access_token});
+    
   }
 
   saveCard(event) {

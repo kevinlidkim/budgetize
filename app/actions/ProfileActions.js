@@ -46,7 +46,7 @@ class ProfileActions {
       type: 'POST'
     })
       .done((data) => {
-        console.log(data);
+        // console.log(data);
         this.actions.purchaseSuccess(data);
       })
       .fail((err) => {
