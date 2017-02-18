@@ -18,7 +18,7 @@ var app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var users = require('./controllers/users');
 
 app.post('/loginUser', users.login);
-
+app.post('/saveCard', users.saveCard);
 // no more endpoints after here
 
 

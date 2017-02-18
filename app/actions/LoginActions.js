@@ -4,7 +4,8 @@ class LoginActions {
   constructor() {
     this.generateActions(
       'loginSuccess',
-      'loginFail'
+      'loginFail',
+      'getToken',
     );
   }
 

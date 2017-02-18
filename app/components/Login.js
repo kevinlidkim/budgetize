@@ -18,11 +18,13 @@ class Login extends React.Component {
   }
 
   componentWillUnmount() {
-    FooterStore.unlisten(this.onChange);
+    LoginStore.unlisten(this.onChange);
   }
 
   onChange(state) {
     this.setState(state);
+    // console.log(state);
+    // console.log(LoginStore.state);
   }
 
   login(event) {
