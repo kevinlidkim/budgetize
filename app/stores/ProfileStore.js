@@ -6,6 +6,7 @@ class ProfileStore {
     this.bindActions(ProfileActions);
     this.creditcard = "";
     this.budget = "";
+    this.access_token = "";
     this.payment_token = "";
   }
 
@@ -18,6 +19,15 @@ class ProfileStore {
 
   saveCardFail(err) {
     console.log("failed to save card");
+  }
+
+  purchaseSuccess(data) {
+    console.log(data.data);
+    this.budget = this.budget - data.data.paymentAmount;
+  }
+
+  purchaseFail(err) {
+    console.log("failed to purchase");
   }
 
 }

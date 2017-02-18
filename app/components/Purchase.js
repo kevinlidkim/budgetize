@@ -2,6 +2,7 @@ import React from 'react';
 import SaleItem from './SaleItem';
 import ProfileStore from '../stores/ProfileStore'
 import LoginStore from '../stores/LoginStore'
+import PurchaseStore from '../stores/PurchaseStore'
 
 class Purchase extends React.Component {
   constructor(props) {
@@ -10,17 +11,19 @@ class Purchase extends React.Component {
       payment_token: '',
       access_token: ''
     }
+    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
     ProfileStore.listen(this.onChange);
     LoginStore.listen(this.onChange);
-
+    PurchaseStore.listen(this.onChange);
   }
 
   componentWillUnmount() {
     ProfileStore.unlisten(this.onChange);
     LoginStore.unlisten(this.onChange);
+    PurchaseStore.unlisten(this.onChange);
   }
 
   onChange(state) {

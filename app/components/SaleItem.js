@@ -1,5 +1,5 @@
 import React from 'react';
-import PurchaseActions from '../actions/PurchaseActions';
+import ProfileActions from '../actions/ProfileActions';
 
 class SaleItem extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class SaleItem extends React.Component {
 
   buyItem(event) {
     event.preventDefault();
-    PurchaseActions.buyItem(this.props.item_name, this.props.price, this.props.payment_token, this.props.access_token);
+    ProfileActions.buyItem(this.props.item_name, this.props.price, this.props.payment_token, this.props.access_token);
   }
 
   render() {

@@ -1,8 +1,9 @@
 import React from 'react';
 import linkState from 'react-link-state';
-import ProfileStore from '../stores/ProfileStore'
+import ProfileStore from '../stores/ProfileStore';
 import ProfileActions from '../actions/ProfileActions';
-import LoginStore from '../stores/LoginStore'
+import LoginStore from '../stores/LoginStore';
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Home extends React.Component {
   }
 
   onChange(state) {
+    // this.setState({budget: ProfileStore.budget - PurchaseStore.payment});
     // this.setState({access_token: LoginStore.state.access_token});
   }
 

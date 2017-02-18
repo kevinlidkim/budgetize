@@ -4,7 +4,7 @@ class PurchaseActions {
   constructor() {
     this.generateActions(
       'purchaseSuccess',
-      'purchaseFail'
+      'purchaseFail',
     );
   }
 
@@ -20,6 +20,7 @@ class PurchaseActions {
       type: 'POST'
     })
       .done((data) => {
+        console.log(data);
         this.actions.purchaseSuccess(data);
       })
       .fail((err) => {

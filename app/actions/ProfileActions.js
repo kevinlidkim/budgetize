@@ -4,7 +4,9 @@ class ProfileActions {
   constructor() {
     this.generateActions(
       'saveCardSuccess',
-      'saveCardFail'
+      'saveCardFail',
+      'purchaseSuccess',
+      'purchaseFail'
     );
   }
 
@@ -29,6 +31,26 @@ class ProfileActions {
       })
       .fail((err) => {
         this.actions.saveCardFail(err);
+      });
+  }
+
+  buyItem(item, price, payment_token, access_token) {
+    $.ajax({ 
+      url: '/buyItem',
+      data: {
+        item: item,
+        price: price,
+        payment_token: payment_token,
+        access_token: access_token
+      },
+      type: 'POST'
+    })
+      .done((data) => {
+        console.log(data);
+        this.actions.purchaseSuccess(data);
+      })
+      .fail((err) => {
+        this.actions.purchaseFail(err);
       });
   }
 

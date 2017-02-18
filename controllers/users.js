@@ -164,6 +164,17 @@ function payCreditcardToken(payment_obj, access_token, response) {
       res.on('data', function (chunk) {
         console.log('chunk');
         console.log(chunk);
+        var auth = JSON.parse(chunk).result.status;
+        if (auth == 'Authorized') {
+          return response.status(200).json({
+            status: 'Successful transaction',
+            data: JSON.parse(chunk)
+          })
+        } else {
+          return response.status(200).json({
+            status: 'Unsuccessful transaction'
+          })
+        }
       });
   });
 
