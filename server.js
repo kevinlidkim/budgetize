@@ -28,6 +28,7 @@ var users = require('./controllers/users');
 
 app.post('/loginUser', users.login);
 app.post('/saveCard', users.saveCard);
+app.post('/buyItem', users.purchase);
 // no more endpoints after here
 
 

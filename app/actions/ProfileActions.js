@@ -9,7 +9,6 @@ class ProfileActions {
   }
 
   saveCard(creditcard, cvn, month, year, owner, address, email, access_token, budget) {
-
     $.ajax({ 
       url: '/saveCard',
       data: {
@@ -32,6 +31,7 @@ class ProfileActions {
         this.actions.saveCardFail(err);
       });
   }
+
 }
 
 export default alt.createActions(ProfileActions);

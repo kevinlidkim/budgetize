@@ -1,47 +1,42 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import LoginStore from '../stores/LoginStore'
+import SaleItem from './SaleItem';
 import ProfileStore from '../stores/ProfileStore'
+import LoginStore from '../stores/LoginStore'
 
-class App extends React.Component {
+class Purchase extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '',
-      access_token: '',
       payment_token: '',
-      budget: ''
+      access_token: ''
     }
-    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    LoginStore.listen(this.onChange);
     ProfileStore.listen(this.onChange);
+    LoginStore.listen(this.onChange);
+
   }
 
   componentWillUnmount() {
-    LoginStore.unlisten(this.onChange);
     ProfileStore.unlisten(this.onChange);
+    LoginStore.unlisten(this.onChange);
   }
 
   onChange(state) {
     this.setState({access_token: LoginStore.state.access_token});
     this.setState({payment_token: ProfileStore.state.payment_token});
-    this.setState({budget: ProfileStore.state.budget});
-    // console.log(this.state);
   }
 
   render() {
     return (
       <div>
-        <Navbar history={this.props.history} />
-        {this.props.children}
-        <Footer />
+        PURCHASE THESE ITEMS
+        <SaleItem item_name="Girlfriend" price="$50" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
+        <SaleItem item_name="Laptop" price="$300"/>
       </div>
     );
   }
 }
 
-export default App;
+export default Purchase;

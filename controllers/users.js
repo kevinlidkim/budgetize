@@ -6,7 +6,9 @@ var $ = require('jQuery');
 // Token Endpoint
 var hostUrl = "hack.softheon.io";
 var tokenEndpointPath = "/api/identity/core/connect/token";
-var creditcardEndpointPath = '/api/payments/v1/creditcards'
+var creditcardEndpointPath = '/api/payments/v1/creditcards';
+var enterpriseEndpointPath = '/api/enterprise';
+var paymentEndpoint = '/api/payments/v1/payments'
 // var creditcardEndpoint = 'https://hack.softheon.io/api/payments/v1/creditcards'
 
 // Example Client Credentials
@@ -137,5 +139,54 @@ exports.saveCard = function(req, res) {
     return res.status(500).json({
       status: 'Could not save card'
     });
+  }
+}
+
+
+function payCreditcardToken(payment_obj, access_token, response) {
+
+  var payment = JSON.stringify(payment_obj);
+  // Set the post options
+  var postOptions = {
+      host: hostUrl,
+      port: '443',
+      path: paymentEndpoint,
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + access_token
+      }
+  };
+  // Set the post request
+  var postRequest = https.request(postOptions, function(res) {
+      var data = '';
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+        console.log('chunk');
+        console.log(chunk);
+      });
+  });
+
+  postRequest.write(payment);
+  postRequest.end();
+
+}
+
+exports.purchase = function(req, res) {
+
+  // console.log(req.body);
+
+  var paymentMethod = {
+    PaymentToken: req.body.payment_token,
+    Type: "Credit Card"
+  }
+  var payment = {
+    PaymentAmount: Number(req.body.price.replace(/[^0-9\.]+/g,"")),
+    Description: req.body.item,
+    PaymentMethod: paymentMethod
+  }
+
+  if (req.body.access_token != "" && req.body.payment_token != "") {
+    return payCreditcardToken(payment, req.body.access_token, res);
   }
 }

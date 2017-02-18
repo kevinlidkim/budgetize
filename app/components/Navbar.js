@@ -2,24 +2,29 @@ import React from 'react';
 import {Link} from 'react-router';
 import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
+import ProfileStore from '../stores/ProfileStore'
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = NavbarStore.getState();
+    this.state = {
+      budget: ''
+    }
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
     NavbarStore.listen(this.onChange);
+    ProfileStore.listen(this.onChange);
   }
 
   componentWillUnmount() {
     NavbarStore.unlisten(this.onChange);
+    ProfileStore.unlisten(this.onChange);
   }
 
   onChange(state) {
-    this.setState(state);
+    this.setState({budget: ProfileStore.state.budget});
   }
 
   handleSubmit(event) {
@@ -59,13 +64,13 @@ class Navbar extends React.Component {
               <div className='tri invert'></div>
             </span>
             Budgetize
-            <span className='badge badge-up badge-danger'>{this.state.onlineUsers}</span>
+            <span className='badge badge-up badge-danger'>{this.state.budget}</span>
           </Link>
         </div>
         <div id='navbar' className='navbar-collapse collapse'>
           <form ref='searchForm' className='navbar-form navbar-left animated' onSubmit={this.handleSubmit.bind(this)}>
             <div className='input-group'>
-              <input type='text' className='form-control' placeholder={this.state.totalCharacters + ' characters'} value={this.state.searchQuery} onChange={NavbarActions.updateSearchQuery} />
+              <input type='text' className='form-control' placeholder='Search' value={this.state.searchQuery} onChange={NavbarActions.updateSearchQuery} />
               <span className='input-group-btn'>
                 <button className='btn btn-default' onClick={this.handleSubmit.bind(this)}><span className='glyphicon glyphicon-search'></span></button>
               </span>
@@ -73,8 +78,9 @@ class Navbar extends React.Component {
           </form>
           <ul className='nav navbar-nav'>
             <li><Link to='/login'>Login</Link></li>
-            <li><Link to='/cart'>Cart<span className='badge badge-up badge-danger'>8</span></Link></li> 
+            <li><Link to='/purchase_history'>Purchase History<span className='badge badge-up badge-danger'>5</span></Link></li> 
             <li><Link to='/profile'>Profile</Link></li>
+            <li><Link to='/purchase'>Purchase</Link></li>
           </ul>
         </div>
       </nav>
