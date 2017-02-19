@@ -8,6 +8,7 @@ class ProfileStore {
     this.budget = "";
     this.access_token = "";
     this.payment_token = "";
+    this.purchases = [];
   }
 
   saveCardSuccess(data) {
@@ -29,6 +30,18 @@ class ProfileStore {
   purchaseFail(err) {
     // console.log("failed to purchase");
     alert("failed to purchase");
+  }
+
+  getTransactionsSuccess(data) {
+    console.log(data);
+    for (var i = 0; i < data.data.length; i++) {
+      // console.log(data.data[i]['Name']);
+      this.purchases.push(data.data[i]['Name']);
+    }
+  }
+
+  getTransactionsFail(err) {
+    console.log(err);
   }
 
 }

@@ -80,7 +80,7 @@ class Navbar extends React.Component {
             <li><Link to='/login'>Login</Link></li>
             <li><Link to='/profile'>Profile</Link></li>
             <li><Link to='/purchase'>Purchase</Link></li>
-            <li><Link to='/purchase_history'>Purchase History<span className='badge badge-up badge-danger'>5</span></Link></li> 
+            <li><Link to='/purchase_history'>Purchase History<span className='badge badge-up badge-danger'>{ProfileStore.state.purchases.length}</span></Link></li> 
           </ul>
         </div>
       </nav>

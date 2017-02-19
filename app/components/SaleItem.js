@@ -1,6 +1,8 @@
 import React from 'react';
 import ProfileActions from '../actions/ProfileActions';
 import ProfileStore from '../stores/ProfileStore';
+import LoginStore from '../stores/LoginStore';
+
 
 class SaleItem extends React.Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class SaleItem extends React.Component {
     var price = Number(this.props.price.replace(/[^0-9\.]+/g,""));
 
     if (budget > price) {
-      ProfileActions.buyItem(this.props.item_name, this.props.price, this.props.payment_token, this.props.access_token);
+      ProfileActions.buyItem(this.props.item_name, this.props.price, this.props.payment_token, this.props.access_token, LoginStore.state.user);
     } else {
       alert("get some money kid");
       // console.log("YOU DONT HAVE ENOUGH MONEY");

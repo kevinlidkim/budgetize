@@ -30,6 +30,7 @@ class App extends React.Component {
     this.setState({access_token: LoginStore.state.access_token});
     this.setState({payment_token: ProfileStore.state.payment_token});
     this.setState({budget: ProfileStore.state.budget});
+    this.setState({user: LoginStore.state.user});
     // console.log(this.state);
   }
 
