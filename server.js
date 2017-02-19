@@ -16,7 +16,7 @@ var routes = require('./app/routes');
 
 var app = express();
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
