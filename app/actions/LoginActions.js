@@ -20,10 +20,12 @@ class LoginActions {
     })
       .done((data) => {
         this.actions.loginSuccess(data);
+        alert("Logged in successful");
         // retrieve Softheon API access token here
       })
       .fail((err) => {
         this.actions.loginFail(err);
+        alert("Invalid credentials")
       });
   }
 }

@@ -29,6 +29,7 @@ class ProfileActions {
       type: 'POST'
     })
       .done((data) => {
+        alert("Added credit card")
         this.actions.saveCardSuccess(data);
       })
       .fail((err) => {
@@ -50,6 +51,7 @@ class ProfileActions {
     })
       .done((data) => {
         // console.log(data);
+        alert("Purchased item");
         this.actions.purchaseSuccess(data);
       })
       .fail((err) => {
