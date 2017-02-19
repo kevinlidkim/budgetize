@@ -35,6 +35,7 @@ class ProfileStore {
 
   getTransactionsSuccess(data) {
     console.log(data);
+    this.purchases = [];
     for (var i = 0; i < data.data.length; i++) {
       // console.log(data.data[i]['Name']);
       this.purchases.push(data.data[i]['Name']);
