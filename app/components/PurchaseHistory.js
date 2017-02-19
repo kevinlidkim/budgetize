@@ -34,14 +34,18 @@ class PurchaseHistory extends React.Component {
   render() {
     var purchase_history = ProfileStore.state.purchases;
     var purchase_list = purchase_history.map(function(purchase) {
-      return <li>{purchase}</li>
+      return <li className="list-group-item">{purchase}</li>
     })
 
     return (
       <div>
-        <p>You have purchased these items</p>
-        <ul>{purchase_list}</ul>
-        <button type="submit" onClick={this.getData.bind(this)}>Update Data</button>
+        <div className='col-md-4'>
+        </div>
+        <div className='col-md-4 text-center'>
+          <h3>You have purchased these items</h3>
+          <ul className="list-group">{purchase_list}</ul>
+          <button type="submit" className="btn btn-default" onClick={this.getData.bind(this)}>Update Data</button>
+        </div>
       </div>
     );
   }

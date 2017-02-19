@@ -29,16 +29,20 @@ class Purchase extends React.Component {
   render() {
     return (
       <div>
-        PURCHASE THESE ITEMS
-        <SaleItem budget={ProfileStore.state.budget} item_name="Paul Fodor" price="$114" item_url="http://i.imgur.com/cLaG8eK.jpg" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
-        <br />
-        <SaleItem budget={ProfileStore.state.budget} item_name="Girlfriend" price="$50" item_url="http://i.imgur.com/XyvrNud.jpg" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
-        <br />
-        <SaleItem budget={ProfileStore.state.budget} item_name="Laptop" price="$300" item_url="http://i.imgur.com/oLity5W.png" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
-        <br />
-        <SaleItem budget={ProfileStore.state.budget} item_name="Stick" price="$1" item_url="http://i.imgur.com/LWMKlBR.png" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
-        <br />
-        <SaleItem budget={ProfileStore.state.budget} item_name="Gunnars" price="$214" item_url="http://i.imgur.com/KfmkahA.jpg" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
+        <div className='col-md-4'>
+        </div>
+        <div className='col-md-4 text-center'>
+          <h2>Items For Sale</h2>
+          <SaleItem budget={ProfileStore.state.budget} item_name="Paul Fodor" price="$114" item_url="http://i.imgur.com/cLaG8eK.jpg" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
+          <br />
+          <SaleItem budget={ProfileStore.state.budget} item_name="Girlfriend" price="$50" item_url="http://i.imgur.com/XyvrNud.jpg" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
+          <br />
+          <SaleItem budget={ProfileStore.state.budget} item_name="Laptop" price="$300" item_url="http://i.imgur.com/oLity5W.png" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
+          <br />
+          <SaleItem budget={ProfileStore.state.budget} item_name="Stick" price="$1" item_url="http://i.imgur.com/LWMKlBR.png" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
+          <br />
+          <SaleItem budget={ProfileStore.state.budget} item_name="Gunnars" price="$214" item_url="http://i.imgur.com/KfmkahA.jpg" payment_token={ProfileStore.state.payment_token} access_token={LoginStore.state.access_token}/>
+        </div>
       </div>
     );
   }

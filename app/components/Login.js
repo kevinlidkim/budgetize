@@ -35,14 +35,24 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="form-container">
-        <form className="form">
-          <div className="form-group">
-            <input type="text" valueLink={linkState(this, 'username')}placeholder="Username" />
-            <input type="password" valueLink={linkState(this, 'password')} placeholder="Password" />
+      <div>
+        <div className='col-md-4'>
+        </div>
+        <div className='col-md-4'>
+          <div className="form-container">
+            <form className="form">
+              <div className="form-group">
+                <label for="username">Username</label>
+                <input type="text" valueLink={linkState(this, 'username')}placeholder="Username" id="username" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="password">Password</label>
+                <input type="password" valueLink={linkState(this, 'password')} placeholder="Password" id="password" className="form-control" />
+              </div>
+              <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Login</button>
+            </form>
           </div>
-          <button type="submit" onClick={this.login.bind(this)}>Login</button>
-        </form>
+        </div>
       </div>
     );
   }

@@ -54,24 +54,69 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="form-container">
-        <form className="form">
-          <div className="form-group">
-            <input type="text" valueLink={linkState(this, 'creditcard')}placeholder="Creditcard" />
-            <input type="text" valueLink={linkState(this, 'cvn')} placeholder="CVN" />
-            <input type="text" valueLink={linkState(this, 'month')}placeholder="Expiration Month" />
-            <input type="text" valueLink={linkState(this, 'year')} placeholder="Expiration Year" />
-            <input type="text" valueLink={linkState(this, 'owner')}placeholder="Card Holder Name" />
-            <input type="text" valueLink={linkState(this, 'address1')} placeholder="Address 1" />
-            <input type="text" valueLink={linkState(this, 'address2')} placeholder="Address 2" />
-            <input type="text" valueLink={linkState(this, 'city')} placeholder="City" />
-            <input type="text" valueLink={linkState(this, 'state')} placeholder="State" />
-            <input type="text" valueLink={linkState(this, 'zipCode')} placeholder="Zip Code" />
-            <input type="text" valueLink={linkState(this, 'email')}placeholder="Email Address" />
-            <input type="text" valueLink={linkState(this, 'budget')}placeholder="Budget" />
-          </div>
-          <button type="submit" onClick={this.saveCard.bind(this)}>Save</button>
-        </form>
+      <div>
+        <div className='col-md-2'>
+        </div>
+        <div className="form-container">
+          <form className="form">
+
+            <div className='col-md-4'>
+              <div className="form-group">
+                <label for="creditcard">Credit Card</label>
+                <input type="text" valueLink={linkState(this, 'creditcard')}placeholder="Creditcard" id="creditcard" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="cvn">Security Code</label>
+                <input type="text" valueLink={linkState(this, 'cvn')} placeholder="CVN" id="cvn" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="month">Expiration Month</label>
+                <input type="text" valueLink={linkState(this, 'month')}placeholder="Expiration Month" id="month" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="year">Expiration Year</label>
+                <input type="text" valueLink={linkState(this, 'year')} placeholder="Expiration Year" id="year" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="owner">Card Holder Name</label>
+                <input type="text" valueLink={linkState(this, 'owner')}placeholder="Card Holder Name" id="owner" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="address1">Address 1</label>
+                <input type="text" valueLink={linkState(this, 'address1')} placeholder="Address 1" id="address1" className="form-control" />
+              </div>
+            </div>
+
+            <div className='col-md-4'>
+              <div className="form-group">
+                <label for="address2">Address 2</label>
+                <input type="text" valueLink={linkState(this, 'address2')} placeholder="Address 2" id="address2" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="city">City</label>
+                <input type="text" valueLink={linkState(this, 'city')} placeholder="City" id="city" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="state">State</label>
+                <input type="text" valueLink={linkState(this, 'state')} placeholder="State" id="state" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="zipcode">Zip Code</label>
+                <input type="text" valueLink={linkState(this, 'zipCode')} placeholder="Zip Code" id="zipcode" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="email">Email</label>
+                <input type="text" valueLink={linkState(this, 'email')}placeholder="Email Address" id="email" className="form-control" />
+              </div>
+              <div className="form-group">
+                <label for="budget">Budget</label>
+                <input type="text" valueLink={linkState(this, 'budget')}placeholder="Budget" id="budget" className="form-control" />
+              </div>
+              <button type="submit" className="btn btn-default" onClick={this.saveCard.bind(this)}>Save</button>
+            </div>
+
+          </form>
+        </div>
       </div>
     );
   }

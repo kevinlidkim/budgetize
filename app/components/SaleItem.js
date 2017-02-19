@@ -31,10 +31,10 @@ class SaleItem extends React.Component {
   render() {
     return (
       <div>
-        <img src={this.props.item_url}></img>
-        <p>{this.props.item_name}</p>
-        <p>{this.props.price}</p>
-        <button type="submit" onClick={this.buyItem.bind(this)}>Purchase</button>
+        <h4>{this.props.item_name}</h4>
+        <img src={this.props.item_url} className="rounded"></img>
+        <h5>{this.props.price}</h5>
+        <button type="submit" className="btn btn-default" onClick={this.buyItem.bind(this)}>Purchase</button>
       </div>
     );
   }

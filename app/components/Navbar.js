@@ -45,24 +45,7 @@ class Navbar extends React.Component {
     return (
       <nav className='navbar navbar-default navbar-static-top'>
         <div className='navbar-header'>
-          <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar'>
-            <span className='sr-only'>Toggle navigation</span>
-            <span className='icon-bar'></span>
-            <span className='icon-bar'></span>
-            <span className='icon-bar'></span>
-          </button>
           <Link to='/' className='navbar-brand'>
-            <span className={'triangles animated ' + this.state.ajaxAnimationClass}>
-              <div className='tri invert'></div>
-              <div className='tri invert'></div>
-              <div className='tri'></div>
-              <div className='tri invert'></div>
-              <div className='tri invert'></div>
-              <div className='tri'></div>
-              <div className='tri invert'></div>
-              <div className='tri'></div>
-              <div className='tri invert'></div>
-            </span>
             Budgetize
             <span className='badge badge-up badge-danger'>{this.state.budget}</span>
           </Link>

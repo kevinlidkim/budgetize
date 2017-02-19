@@ -10,8 +10,12 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className='alert alert-info'>
-        Welcome To Budgetize
+      <div>
+        <div className='col-md-4'>
+        </div>
+        <div className='alert alert-info col-md-4 text-center'>
+          Welcome To Budgetize
+        </div>
       </div>
     );
   }

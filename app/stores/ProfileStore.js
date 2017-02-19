@@ -19,6 +19,7 @@ class ProfileStore {
   }
 
   saveCardFail(err) {
+    alert("Invalid credit card credentials")
     console.log("failed to save card");
   }
 
