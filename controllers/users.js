@@ -11,7 +11,7 @@ var paymentEndpoint = '/api/payments/v1/payments'
 var folderEndpoint = '/api/enterprise/content/v1/folder'
 var templateEndpoint = '/api/enterprise/template/v1/ftl'
 
-var my_type = 20461;
+var my_type = 20462;
 
 
 // Example Client Credentials
