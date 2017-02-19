@@ -1,6 +1,5 @@
 var queryString = require('querystring');
 var https = require('https');
-var $ = require('jQuery');
 
 
 // Token Endpoint
@@ -9,19 +8,127 @@ var tokenEndpointPath = "/api/identity/core/connect/token";
 var creditcardEndpointPath = '/api/payments/v1/creditcards';
 var enterpriseEndpointPath = '/api/enterprise';
 var paymentEndpoint = '/api/payments/v1/payments'
-// var creditcardEndpoint = 'https://hack.softheon.io/api/payments/v1/creditcards'
+var folderEndpoint = '/api/enterprise/content/v1/folder/'
+var templateEndpoint = '/api/enterprise/template/v1/ftl'
+
 
 // Example Client Credentials
 var clientId = "hack002";
 var clientSecret = "hack002";
 var scope = "paymentapi enterpriseapi";
 
+
 function encodeClientCredentials (clientId, clientSecret) {
     var clientCredentials = clientId + ':' + clientSecret;
     return new Buffer(clientCredentials).toString('base64');
 }
 
-// requestAccessToken(hostUrl, tokenEndpointPath, clientId, clientSecret, scope);
+function insertEntity(token, payment) {
+
+  var folder = {
+    "Acl": -1,
+    "Type": type,
+    "Name": "Item Purchase",
+    "Profiles": [
+      {
+        "Acl": -1,
+        "Type": 1,
+        "Strings": [
+          "Steak", "Dkim"
+        ],
+        "Integers": [
+          12
+        ]
+      }
+    ]
+  };
+
+  // Set the post options
+  var postOptions = {
+      host: hostUrl,
+      port: '443',
+      path: templateEndpoint + clientId,
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+      }
+  };
+  // Set the post request
+  var postRequest = https.request(postOptions, function(res) {
+      var data = '';
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+        console.log('create new entity chunk');
+        console.log(chunk);
+      });
+  });
+
+  postRequest.write(JSON.stringify(folder));
+  postRequest.end();
+
+}
+
+
+function insertTemplate(token) {
+
+  var template = {
+    "Category": "Common",
+    "Type": 1,
+    "Name": "Transactions",
+    "Profiles": [
+      "Type": 1,
+      "Name": "Item",
+      "Fields": [
+        {
+          "Name": "Item Name",
+          "Type": "String",
+          "Index": 1,
+          "Position": 1
+        },
+        {
+          "Name": "Customer",
+          "Type": "String",
+          "Index": 0,
+          "Position": 1
+        },
+        {
+          "Name": "Price",
+          "Type": "Integer",
+          "Index": 0,
+          "Position": 0
+        }
+      ]
+    ],
+    "Drawers": [2]
+  }
+
+  // Set the post options
+  var postOptions = {
+      host: hostUrl,
+      port: '443',
+      path: templateEndpoint,
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+      }
+  };
+  // Set the post request
+  var postRequest = https.request(postOptions, function(res) {
+      var data = '';
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+        console.log('create new template chunk');
+        console.log(chunk);
+      });
+  });
+
+  postRequest.write(JSON.stringify(template));
+  postRequest.end();
+
+}
+
 function requestAccessToken(hostUrl, tokenEndpointPath, clientId, clientSecret, scope, user, response) {
   // var a_c = "";
 
@@ -49,6 +156,10 @@ function requestAccessToken(hostUrl, tokenEndpointPath, clientId, clientSecret, 
       res.setEncoding('utf8');
       res.on('data', function (chunk){
           var access_token = JSON.parse(chunk).access_token;
+
+          // Create a template for current user
+          insertTemplate(access_token);
+
           return response.status(200).json({
             access_token: access_token,
             status: 'Logged in successfully',
@@ -143,7 +254,7 @@ exports.saveCard = function(req, res) {
 }
 
 
-function payCreditcardToken(payment_obj, access_token, response) {
+function payCreditcardToken(access_token, payment_obj, response) {
 
   var payment = JSON.stringify(payment_obj);
   // Set the post options
@@ -162,9 +273,13 @@ function payCreditcardToken(payment_obj, access_token, response) {
       var data = '';
       res.setEncoding('utf8');
       res.on('data', function (chunk) {
-        console.log('chunk');
+        console.log('payment with payment_token chunk');
         console.log(chunk);
         var auth = JSON.parse(chunk).result.status;
+
+        // STORE TRANSACTION TO SOFTHEON API
+        insertEntity(access_token, payment_obj);
+
         if (auth == 'Authorized') {
           return response.status(200).json({
             status: 'Successful transaction',
@@ -198,6 +313,10 @@ exports.purchase = function(req, res) {
   }
 
   if (req.body.access_token != "" && req.body.payment_token != "") {
-    return payCreditcardToken(payment, req.body.access_token, res);
+    return payCreditcardToken(req.body.access_token, payment, res);
+  } else {
+    return res.status(500).json({
+      status: 'Unknown access token or payment token'
+    })
   }
 }

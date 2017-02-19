@@ -27,7 +27,8 @@ class ProfileStore {
   }
 
   purchaseFail(err) {
-    console.log("failed to purchase");
+    // console.log("failed to purchase");
+    alert("failed to purchase");
   }
 
 }

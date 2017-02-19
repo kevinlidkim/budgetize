@@ -21,16 +21,17 @@ class SaleItem extends React.Component {
     if (budget > price) {
       ProfileActions.buyItem(this.props.item_name, this.props.price, this.props.payment_token, this.props.access_token);
     } else {
-      console.log("YOU DONT HAVE ENOUGH MONEY");
+      alert("get some money kid");
+      // console.log("YOU DONT HAVE ENOUGH MONEY");
     }
   }
 
   render() {
     return (
       <div>
+        <img src={this.props.item_url}></img>
         <p>{this.props.item_name}</p>
         <p>{this.props.price}</p>
-        <p>IMAGE HERE</p>
         <button type="submit" onClick={this.buyItem.bind(this)}>Purchase</button>
       </div>
     );
